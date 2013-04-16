@@ -1,6 +1,6 @@
 {
-    "name": "require",
-    "description": "a simple tool to define/require modules with dependencies",
+    "name": "define",
+    "description": "A simple tool to define/require modules with dependencies",
     "homepage": "https://github.com/apendua/require",
     "author": "Tomasz Lenarcik",
     "version": "0.9.0",
