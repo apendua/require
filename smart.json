@@ -1,0 +1,9 @@
+{
+    "name": "require",
+    "description": "A simple tool to define/require modules with dependencies",
+    "homepage": "https://github.com/apendua/require",
+    "author": "Tomasz Lenarcik",
+    "version": "0.0.1",
+    "git": "https://github.com/apendua/require.git",
+    "packages": {},
+}
