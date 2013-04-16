@@ -1,4 +1,4 @@
-# Require
+# require
 
 This is an ultra simple tool allows you to split your javascript
 code into separate modules and define dependency relations between them
