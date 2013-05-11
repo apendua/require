@@ -82,16 +82,18 @@
             }
             deps = [deps, ];
         }
-        if (deps.length === 0)
+        if (deps.length === 0 && _.isFunction(body)){
             // no dependencies, so run immediately
             body.apply(undefined, deps);
+        }
         // prepare for resolving dependencies
         var todo = deps.length, _deps = _.clone(deps);
         var resolve = function (data, i) {
             _deps[i] = data;
-            if (--todo <= 0)
+            if (--todo <= 0 && _.isFunction(body)){
                 // everything is resolved now, so we can process the body of our request
                 body.apply(undefined, _deps);
+            }
         };
         _.each(deps, function (name, i) {
             load(get(name), function (data) {
