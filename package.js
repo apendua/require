@@ -1,6 +1,6 @@
 
 Package.describe({
-    summary: "a simple tool to define/require modules with dependencies",
+    summary: "A simple tool to define/require modules with dependencies",
 });
 
 Package.on_use(function (api) {
