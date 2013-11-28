@@ -45,8 +45,7 @@
                         module.data = module.body.apply(undefined, args);
                     // tell that the module status has changed
                     // (note: if no Deps present, this will be undefined)
-                    if (dependency[module.name])
-                        dependency[module.name].changed();
+                    dependency[module.name] && dependency[module.name].changed();
                     // trigger all postponed actions
                     _.each(module.call, function (action) {
                         action.call(undefined, module.data);
@@ -58,14 +57,23 @@
     };
 
     define = function (name, deps, body) {
-        var module = get(name);
+        var module = null;
+        if (_.isArray(name)) { // looks like anonymous module
+            body = deps; deps = name; name = undefined;
+        }
+        var module = get(name || Random.id());
         if (_.has(module, 'body'))
             throw new Error('ERROR: module `' + name + '` already defined');
         module.deps = deps;
         module.body = body;
-        // only load module if somebody requires it
-        if (module.call.length > 0) load(module);
+        // only load module if somebody requires it (it doesn't seem to be the right)
+        // if (module.call.length > 0) load(module);
+        // load module no matter what :)
+        load(module);
     };
+
+    // indicate that we're (more or less) supporting AMD
+    define.amd = true;
     
     require = function (deps, body) {
         if (_.isString(deps)) {
