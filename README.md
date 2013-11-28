@@ -104,3 +104,9 @@ superCoolModule.sayHi();
 
 Additionally, calling `require()` without callback
 in Meteor environment turns it into a reactive data source.
+
+## TODO
+
+- add a note about anonymous modules
+- allow modules with no dependencies
+- create tests
