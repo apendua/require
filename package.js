@@ -1,14 +1,21 @@
 
 Package.describe({
-    summary: "A simple tool to define/require modules with dependencies",
+  summary: "A simple tool to define/require modules with dependencies",
 });
 
 Package.on_use(function (api) {
-    api.use(['random', 'underscore'], ['client', 'server']);
-    api.add_files('manager.js', ['client', 'server']);
+  api.use(['deps', 'underscore'], ['client', 'server']);
+  
+  api.add_files([
 
-    if (api.export !== undefined) {
-      api.export('define', ['client', 'server']);
-      api.export('require', ['client', 'server']);
-    }
+    'manager.js',
+    'require.js',
+
+  ], ['client', 'server']);
+
+  if (api.export !== undefined) {
+    api.export('AMDManager', ['client', 'server']);
+    api.export('define', ['client', 'server']);
+    api.export('require', ['client', 'server']);
+  }
 });
