@@ -50,10 +50,29 @@
                     _.each(module.call, function (action) {
                         action.call(undefined, module.data);
                     });
-                });
+                }, module.name);
                 stack.pop();
             }
         }
+    };
+    // taken from node.js path.js implementation
+    var normalizeArray = function (parts) {
+        // if the path tries to go above the root, `up` ends up > 0
+        var up = 0;
+        for (var i = parts.length - 1; i >= 0; i--) {
+            var last = parts[i];
+            if (last === '.') {
+                parts.splice(i, 1);
+            } else if (last === '..') {
+                parts.splice(i, 1);
+                up++;
+            } else if (up) {
+                parts.splice(i, 1);
+                up--;
+            }
+        }
+
+        return parts;
     };
 
     define = function (name, deps, body) {
@@ -75,7 +94,7 @@
     // indicate that we're (more or less) supporting AMD
     define.amd = true;
     
-    require = function (deps, body) {
+    require = function (deps, body, parent) {
         if (_.isString(deps)) {
             if (!_.isFunction(body)) {
                 // this is one parameter version of require call
@@ -104,6 +123,12 @@
             }
         };
         _.each(deps, function (name, i) {
+            if (parent && name.charAt(0) === '.') {
+                var parentParts = parent.split('/');
+                parentParts.splice(parentParts.length - 1, 1);
+                var nameParts = name.split('/');
+                name = normalizeArray(parentParts.concat(nameParts)).join('/');
+            }
             load(get(name), function (data) {
                 // when the module is loaded, mark it as resolved
                 resolve(data, i);
