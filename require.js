@@ -81,8 +81,10 @@
             body = deps; deps = name; name = undefined;
         }
         var module = get(name || Random.id());
-        if (_.has(module, 'body'))
-            throw new Error('ERROR: module `' + name + '` already defined');
+        if (_.has(module, 'body')) {
+            console.log('WARNING: module `' + name + '` already defined');
+            return;
+        }
         module.deps = deps;
         module.body = body;
         // only load module if somebody requires it (it doesn't seem to be the right)
