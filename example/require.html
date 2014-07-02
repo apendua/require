@@ -1,0 +1,14 @@
+<head>
+  <title>example</title>
+</head>
+
+<body>
+  <h1>Messages:</h1>
+  {{> listOfMessages}}
+</body>
+
+<template name="listOfMessages">
+  {{#each messages}}
+    <p>&gt; {{text}}</p>
+  {{/each}}
+</template>
