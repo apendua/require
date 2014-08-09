@@ -4,17 +4,15 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-  api.use(['deps', 'underscore'], ['client', 'server']);
+  api.use(['deps', 'underscore', 'amd-manager'], ['client', 'server']);
   
   api.add_files([
 
-    'manager.js',
     'require.js',
 
   ], ['client', 'server']);
 
   if (api.export !== undefined) {
-    api.export('AMDManager', ['client', 'server']);
     api.export('define', ['client', 'server']);
     api.export('require', ['client', 'server']);
   }
@@ -23,8 +21,7 @@ Package.on_use(function (api) {
 
 Package.on_test(function (api) {
   // ENVIRONMENT
-  api.use('tinytest', ['client', 'server']);
-  api.add_files('manager.js', ['client', 'server']);
+  api.use(['amd-manager', 'tinytest'], ['client', 'server']);
 
   // TESTS
   api.add_files([
