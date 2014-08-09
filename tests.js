@@ -1,3 +1,5 @@
+// TODO: write tests for require/define features rather than AMDManager :P
+
 Tinytest.add('Require - simple define/require routine', function (test) {
 
   var manager = new AMDManager(),
