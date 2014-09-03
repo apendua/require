@@ -2,18 +2,13 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "define": {
+      "mrt:define": {
         "path": ".."
       }
     },
     "packages": {
-      "define": {
+      "mrt:define": {
         "path": ".."
-      },
-      "amd-manager": {
-        "git": "https://github.com/apendua/meteor-amd-manager.git",
-        "tag": "v0.0.3",
-        "commit": "a082040a4779dbcfd87f54c9ca0d2bf6d4ed12cd"
       }
     }
   }
