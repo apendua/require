@@ -107,6 +107,7 @@ in Meteor environment turns it into a reactive data source.
 
 ## TODO
 
-- add a note about anonymous modules
-- allow modules with no dependencies
-- create tests
+- solve the problem of anonymous modules
+- https://github.com/amdjs/amdjs-api/wiki/AMD
+- ~~allow modules with no dependencies~~
+- ~~create tests~~
